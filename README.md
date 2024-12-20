@@ -1,47 +1,84 @@
-Here’s the README in an editable text format:
 
----
+# FER SSL
+ 
+Official Of our ACII 2022 paper:
 
-# Facial Emotion Recognition using Semi-Supervised Neural Networks
+> [**Analysis of Semi-Supervised Methods for Facial Expression Recognition**](https://arxiv.org/abs/2208.00544)      
+> Shuvendu Roy, Ali Etemad       
+> *In Proceedings of the IEEE International Conference on Affective Computing and Intelligent Interaction (ACII), 2022*
 
-This project implements methods from the paper *"Analysis of Semi-Supervised Methods for Facial Expression Recognition"* presented at the 2022 ACII Conference. The project explores semi-supervised learning techniques for facial emotion recognition.  
 
-## Project Structure  
 
-- **Code Files**:  
-  - `train_utils.py`: Training utility functions.  
-  - `uda.py`: Unsupervised Data Augmentation.  
-  - `utils.py`: General utility functions.  
-  - `vat.py`: Virtual Adversarial Training implementation.  
-  - `custom_writer.py`: Logging and custom writer utilities.  
-  - `eval.py`: Evaluation pipeline.  
-  - `fixmatch.py`, `fullysupervised.py`, `meanteacher.py`, `mixmatch.py`, `pimodel.py`, `pseudolabel.py`, `remixmatch.py`: Implementations of semi-supervised learning methods.  
 
-- **Folders**:  
-  - `models/`: Predefined neural network architectures.  
-  - `datasets/`: Dataset loading and preprocessing.  
-  - `config/`: Configuration files for model training and evaluation.  
+<p align="center">
+  <img src="https://github.com/ShuvenduRoy/SSL_FER/blob/main/figures/overview.png?raw=true" alt="drawing" width="600"/>
+</p>
 
-## Running the Project  
+### Dataset
+We used the following dataset 
+1. [AffectNet](http://mohammadmahoor.com/affectnet/)
+2. [FER-13](https://www.kaggle.com/datasets/msambare/fer2013)
+3. [RAF-DB](http://www.whdeng.cn/RAF/model1.html)
 
-1. **Dependencies**: Install required Python packages listed in `requirements.txt`. Use:  
-   ```bash
-   pip install -r requirements.txt
-   ```
+Once the dataset is downloaded use the scripts in `datasets/preprocessing` to preprocess the dataset.
+The porcessed dataset structure should look like this:
+```
+dataset
+├── train
+│   ├── class_001
+|   |      ├── 1.jpg
+|   |      ├── 2.jpg
+|   |      └── ...
+│   ├── class_002
+|   |      ├── 1.jpg
+|   |      ├── 2.jpg
+|   |      └── ...
+│   └── ...
+└── val
+    ├── class_001
+    |      ├── 1.jpg
+    |      ├── 2.jpg
+    |      └── ...
+    ├── class_002
+    |      ├── 1.jpg
+    |      ├── 2.jpg
+    |      └── ...
+    └── ...
+```
 
-2. **Dataset Preparation**:  
-   Place your facial emotion datasets in the `datasets/` folder. Update the preprocessing scripts as needed.  
+### Run
+Modify the config files in `config/` directory if needed.
 
-3. **Training**:  
-   To train a model, use one of the provided methods (e.g., FixMatch, Mean Teacher):  
-   ```bash
-   python fixmatch.py --config config/fixmatch_config.json
-   ```  
+```
+python [ALGO_NAME].py --c [CONFIG_FILE]
+```
 
-4. **Evaluation**:  
-   Evaluate trained models using:  
-   ```bash
-   python eval.py --model_path <path_to_trained_model>
-   ```  
 
----
+### Results
+<p align="center">
+ <img src="https://github.com/ShuvenduRoy/SSL_FER/blob/main/figures/results.png?raw=true" alt="drawing" width="700"/>
+</p>
+
+
+### Acknowledgements
+The semi-supervised algorithm implementations are followed from the following repository: [TorchSSL](https://github.com/TorchSSL/TorchSSL). We thank the authors for releasing their code. If you use our model and code, please consider citing these works as well.
+
+### Citation
+ 
+Please cite our paper if you this code repo in your work.
+```
+@inproceedings{roy2022analysis,
+  title={Analysis of Semi-Supervised Methods for Facial Expression Recognition},
+  author={Roy, Shuvendu and Etemad, Ali},
+  booktitle={2022 10th International Conference on Affective Computing and Intelligent Interaction (ACII)},
+  pages={1--8},
+  year={2022},
+  organization={IEEE}
+}
+```
+
+## Contact
+Thanks for your attention!
+If you have any suggestion or question, you can leave a message here or contact us directly:
+- shuvendu.roy@queensu.ca
+
